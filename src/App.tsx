@@ -5,11 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { User, UserSelector } from "@/components/UserSelector";
-import { AddUser } from "@/components/AddUser";
+import { User } from "@/components/UserSelector";
 import { useState } from "react";
-import { EditUser } from "@/components/EditUser";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import UserTab from "./UserTab";
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -22,19 +21,7 @@ function App() {
         <TabsTrigger value="categories">Categories</TabsTrigger>
       </TabsList>
       <TabsContent value="users">
-        <Card>
-          <CardHeader>
-            <CardTitle>Users</CardTitle>
-            <CardDescription>Users for todo list</CardDescription>
-          </CardHeader>
-          <CardContent className="w-[480px]">
-            <div className="flex flex-col gap-4 w-full">
-              <UserSelector selectedUser={user} onUserSelect={setUser} />
-              <AddUser onAddUser={setUser} />
-              <EditUser user={user} key={user?.id} />
-            </div>
-          </CardContent>
-        </Card>
+        <UserTab user={user} onUserSelect={setUser} />
       </TabsContent>
       <TabsContent value="todoList">
         <Card>
