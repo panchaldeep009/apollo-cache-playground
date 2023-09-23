@@ -24,3 +24,10 @@ query AllCategories {
     }
   }
 }
+
+query AllUsers {
+  user {
+    id
+    name
+  }
+}

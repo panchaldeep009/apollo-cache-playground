@@ -1,0 +1,9 @@
+mutation AddUser($input: user_insert_input!) {
+  insert_user_one(
+    on_conflict: { constraint: user_pkey, update_columns: name }
+    object: $input
+  ) {
+    id
+    name
+  }
+}
