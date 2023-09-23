@@ -1,0 +1,18 @@
+table:
+  name: todo_category
+  schema: public
+array_relationships:
+  - name: todo_items
+    using:
+      foreign_key_constraint_on:
+        column: category_id
+        table:
+          name: todo_item
+          schema: public
+  - name: todo_list_categories
+    using:
+      foreign_key_constraint_on:
+        column: category_id
+        table:
+          name: todo_list_category
+          schema: public

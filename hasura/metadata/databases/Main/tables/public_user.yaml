@@ -1,0 +1,11 @@
+table:
+  name: user
+  schema: public
+array_relationships:
+  - name: todo_items
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: todo_item
+          schema: public

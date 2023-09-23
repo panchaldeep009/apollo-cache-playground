@@ -1,0 +1,28 @@
+table:
+  name: todo_item
+  schema: public
+object_relationships:
+  - name: todoListCategoryByCategoryIdListId
+    using:
+      manual_configuration:
+        column_mapping:
+          category_id: category_id
+          list_id: list_id
+        insertion_order: null
+        remote_table:
+          name: todo_list_category
+          schema: public
+  - name: todo_category
+    using:
+      foreign_key_constraint_on: category_id
+  - name: todo_list
+    using:
+      foreign_key_constraint_on: list_id
+  - name: todo_list_category
+    using:
+      foreign_key_constraint_on:
+        - category_id
+        - list_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
