@@ -10,7 +10,8 @@ import { AddUser } from "@/components/AddUser";
 import { EditUser } from "@/components/EditUser";
 import { useApolloClient } from "@apollo/client";
 import { useEffect } from "react";
-import { gql } from "@apollo/client";
+import { UserFragmentDoc } from "./codegen";
+import { DeleteUser } from "./components/DeleteUser";
 
 interface UserTabProps {
   user: User | null;
@@ -23,25 +24,15 @@ function UserTab({ user, onUserSelect }: UserTabProps) {
   useEffect(() => {
     if (!user) return;
 
-    console.log(cache["data"]);
-
-    const unsubscribe = cache.watch({
+    return cache.watch({
       callback: (data) => {
-        console.log(data.result);
+        console.log("data", data.result);
       },
-      query: cache["getFragmentDoc"](gql`
-        fragment UserFragment on user {
-          name
-        }
-      `),
-      id: cache.identify({ __typename: "users", id: user?.id }),
+      query: cache["getFragmentDoc"](UserFragmentDoc),
+      id: cache.identify({ __typename: "user", id: user?.id }),
       optimistic: true,
       immediate: true,
     });
-
-    return () => {
-      unsubscribe();
-    };
   }, [cache, user]);
 
   return (
@@ -55,6 +46,10 @@ function UserTab({ user, onUserSelect }: UserTabProps) {
           <UserSelector selectedUser={user} onUserSelect={onUserSelect} />
           <AddUser onAddUser={onUserSelect} />
           <EditUser user={user} key={user?.id} />
+          <DeleteUser
+            userId={user?.id}
+            onUserDelete={() => onUserSelect(null)}
+          />
         </div>
       </CardContent>
     </Card>

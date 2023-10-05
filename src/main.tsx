@@ -8,7 +8,7 @@ import { client } from "./apollo.ts";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <main className="bg-slate-800 h-[100dvh] w-full text-slate-100 flex items-center justify-center">
+      <main className="h-[100dvh] w-full flex items-center justify-center bg-background">
         <App />
       </main>
     </ApolloProvider>

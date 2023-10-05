@@ -26,9 +26,9 @@ export function EditUser({ user }: EditUserProps) {
       },
       optimisticResponse: {
         insert_user_one: {
-          id: Math.random().toString(),
+          __typename: "user",
+          id: user.id,
           name,
-          __typename: "User",
         },
       },
     });

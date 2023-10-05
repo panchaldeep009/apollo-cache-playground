@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@radix-ui/colors": "^2.1",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",

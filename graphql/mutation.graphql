@@ -7,3 +7,10 @@ mutation AddUser($input: user_insert_input!) {
     name
   }
 }
+
+mutation DeleteUser($userId: Int!) {
+  delete_user_by_pk(id: $userId) {
+    name
+    id
+  }
+}

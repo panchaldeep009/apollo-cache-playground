@@ -14,7 +14,8 @@ export function AddUser({ onAddUser }: AddUserProps) {
 
   const [addUser] = useMutation(AddUserDocument, {
     onCompleted: (data) => {
-      onAddUser(data.addUser);
+      if (!data.insert_user_one) return;
+      onAddUser(data.insert_user_one);
       setName("");
     },
   });
@@ -28,9 +29,9 @@ export function AddUser({ onAddUser }: AddUserProps) {
       },
       optimisticResponse: {
         insert_user_one: {
-          id: Math.random().toString(),
+          __typename: "user",
+          id: Math.random(),
           name,
-          __typename: "User",
         },
       },
     });

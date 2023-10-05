@@ -19,7 +19,7 @@ export function UserSelector({
   selectedUser,
   onUserSelect,
 }: UserSelectorProps) {
-  const { data } = useQuery<AllUsersQuery>(AllUsersDocument);
+  const { data } = useQuery(AllUsersDocument);
 
   return (
     <label>
